@@ -4,7 +4,9 @@ package com.explore_greece.Controller;
 import com.explore_greece.Model.UserProfile;
 import com.explore_greece.Repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
@@ -23,7 +25,7 @@ public class UserProfileController {
      * So this, will be a secure area in the future.
      */
     @GetMapping("/index/users/{id}/user_profile/{profile_id}")
-    Optional<UserProfile> getUserProfileById(@PathVariable(name = "profile_id") Long id){
+    public Optional<UserProfile> getUserProfileById(@PathVariable(name = "profile_id") Long id){
         return userProfileRepository.findById(id);
     }
 
