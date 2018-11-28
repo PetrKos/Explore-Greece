@@ -2,7 +2,6 @@ package com.explore_greece.Model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -14,18 +13,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @NotNull
     @Size(max = 30)
-    @Column(name = "first_name")
     private String firstName;
 
-    @NotNull
     @Size(max = 30)
-    @Column(name = "last_name")
     private String lastName;
 
-    @NotNull
     @Email(message = "Please provide a valid e-mail")
     @Size(max = 50)
     @Column(unique = true)
@@ -45,7 +38,6 @@ public class User {
     (fetch = FetchType.LAZY,
     cascade = CascadeType.ALL,
     mappedBy = "user")
-    // @NotNull tried it, doesn't work
     private UserProfile userProfile;
 
     public User() {

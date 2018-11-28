@@ -6,47 +6,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("index/users")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
-
-    @PostMapping("/")
-    public User createUser(@Valid @RequestBody User user) {
-        // This is important to synchronize both sides of the relationship
-        user.getUserProfile().setUser(user);
-
-        return userRepository.save(user);
-    }
-    /*//Create a new User
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user){
-
-        return userRepository.save(user);
-    }*/
-
     //Find all users
-    @GetMapping
-    public List<User> findAllUsers(){
+    @GetMapping("/users")
+    public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
     //Find a user by their ID
-    @GetMapping("{id}")
+    @GetMapping("/users/{id}")
     public Optional<User> getUserById(@PathVariable(value = "id") Long userId){
         return userRepository.findById(userId);
     }
 
+    //Create a new User
+    @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createUser(@RequestBody User newUser){
+        userRepository.save(newUser);
+    }
+
     //Update a user by their ID
-    @PutMapping("{id}")
+    @PutMapping("/users/{id}")
     public User updateUser(@PathVariable (name = "id") Long id,
                            @RequestBody User updatedUser){
 
@@ -54,7 +43,7 @@ public class UserController {
     }
 
     //Delete a user by their ID
-    @DeleteMapping("{id}")
+    @DeleteMapping("users/{id}")
     public void delete(@PathVariable (name = "id") Long userId) {
         userRepository.deleteById(userId);
     }

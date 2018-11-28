@@ -14,7 +14,6 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "phone_number")
     @Size(max = 20)
     private String phoneNumber;
 
@@ -23,10 +22,9 @@ public class UserProfile {
 
     @Basic
     @Temporal(TemporalType.DATE)
-    @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

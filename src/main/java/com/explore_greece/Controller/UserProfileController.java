@@ -6,12 +6,17 @@ import com.explore_greece.Repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+/**
+ * To access profile, we need to implement security.
+ * This will change in the future. Profiles need authorization.
+ */
 
 @RestController
-//@RequestMapping("index/user_profile") TODO implement Spring Security
+@RequestMapping("/user-profile")
 public class UserProfileController {
 
     @Autowired
@@ -24,8 +29,8 @@ public class UserProfileController {
      * authentication credentials which are linked to a user account
      * So this, will be a secure area in the future.
      */
-    @GetMapping("/index/users/{id}/user_profile/{profile_id}")
-    public Optional<UserProfile> getUserProfileById(@PathVariable(name = "profile_id") Long id){
+    @GetMapping("/{id}")
+    public Optional<UserProfile> getUserProfileById(@PathVariable(name = "id") Long id){
         return userProfileRepository.findById(id);
     }
 

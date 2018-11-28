@@ -1,35 +1,29 @@
 package com.explore_greece.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "TOURS")
-public class Tour {
+public class Tour implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @NotBlank
     @Size(max = 80)
     private String title;
 
-    @NotBlank
     @Size(max = 300)
     private String description;
 
+    private int price;
 
-    private double price;
-
-    @NotBlank
     @Size(min = 1, max = 30)
-    private int duration;
+    private int durationInDays;
 
-    @NotBlank
+    //@NotBlank
     @Size(max = 200)
     private String keywords;
 
@@ -41,20 +35,24 @@ public class Tour {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH},
             fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tour_package_id", nullable = false)
+    @JoinColumn(name = "tour_package_id")
     public TourPackage tourPackage;
 
-    /*@OneToMany
-    private List<TourRating> tourRatings;*/
 
     public Tour() {
     }
 
-    public Tour(@NotBlank @Size(max = 80) String title, @NotBlank @Size(max = 300) String description, double price, @NotBlank @Size(min = 1, max = 30) int duration, @NotBlank @Size(max = 200) String keywords, TourPackage tourPackage) {
+    public Tour(@Size(max = 80) String title,
+                @Size(max = 300) String description,
+                int price,
+                @Size(min = 1, max = 30) int duration,
+                @Size(max = 200) String keywords,
+                TourPackage tourPackage) {
+
         this.title = title;
         this.description = description;
         this.price = price;
-        this.duration = duration;
+        this.durationInDays = duration;
         this.keywords = keywords;
         this.tourPackage = tourPackage;
     }
@@ -87,16 +85,16 @@ public class Tour {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
     public int getDuration() {
-        return duration;
+        return durationInDays;
     }
 
     public void setDuration(int duration) {
-        this.duration = duration;
+        this.durationInDays = duration;
     }
 
     public String getKeywords() {
@@ -122,7 +120,7 @@ public class Tour {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", duration=" + duration +
+                ", duration=" + durationInDays +
                 ", keywords='" + keywords + '\'' +
                 ", tourPackage=" + tourPackage +
                 '}';
