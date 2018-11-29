@@ -24,4 +24,5 @@ What needs to be done? A LOT!!
 2. Add validation to all controllers
 3. HATEOAS 
 4. Spring Security
+
 Bonus: Might try to find my way around bootstrap to show a nice presentation
