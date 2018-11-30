@@ -18,17 +18,6 @@ public class TourPackage implements Serializable {
     @Size(max = 30)
     private String region;
 
-    /**
-     * If we delete a tour package, we also
-     * delete all of its content
-     * eg. if we delete "explore Crete",
-     * we also delete all tours in Crete.
-     */
-    /*@OneToMany(mappedBy = "tourPackage",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Tour> tours;*/
-
 
     public TourPackage() {
     }

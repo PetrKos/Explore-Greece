@@ -37,7 +37,7 @@ VALUES ('Lasithi tours', 'LASITHI');
 /*tours-------------------------------------------------------------------*/
 
 INSERT INTO TOURS (title, description, duration_in_days, price, tour_package_id )
-VALUES ('Wonderful Chania', 'Best 7 days of your life', 7, 650,( select id from tour_packages where region = 'CHANIA'));
+VALUES ('Wonderful Chania', 'Best 7 days of your life', 7, 650, 1);
 
 INSERT INTO TOURS (title, description, duration_in_days, price, tour_package_id )
 VALUES ('Main City', 'Street Stories of Chania Morning Tour with Samples of Raki and Mezedes', 5,

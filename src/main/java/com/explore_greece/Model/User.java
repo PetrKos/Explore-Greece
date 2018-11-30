@@ -1,7 +1,6 @@
 package com.explore_greece.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 
@@ -19,11 +18,9 @@ public class User {
     @Size(max = 30)
     private String lastName;
 
-    @Email(message = "Please provide a valid e-mail")
     @Size(max = 50)
     @Column(unique = true)
     private String email;
-
 
     /**
      * In our user table there will be a foreign key/field

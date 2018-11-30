@@ -34,7 +34,7 @@ public class Tour implements Serializable {
      */
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH},
-            fetch = FetchType.LAZY, optional = false)
+            fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "tour_package_id")
     public TourPackage tourPackage;
 

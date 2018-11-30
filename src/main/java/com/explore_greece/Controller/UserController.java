@@ -10,40 +10,41 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
     //Find all users
-    @GetMapping("/users")
+    @GetMapping
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
 
     //Find a user by their ID
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public Optional<User> getUserById(@PathVariable(value = "id") Long userId){
         return userRepository.findById(userId);
     }
 
     //Create a new User
-    @PostMapping("/users")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody User newUser){
         userRepository.save(newUser);
     }
 
     //Update a user by their ID
-    @PutMapping("/users/{id}")
-    public User updateUser(@PathVariable (name = "id") Long id,
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable (value = "id") Long id,
                            @RequestBody User updatedUser){
 
         return userRepository.save(updatedUser);
     }
 
     //Delete a user by their ID
-    @DeleteMapping("users/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable (name = "id") Long userId) {
         userRepository.deleteById(userId);
     }
